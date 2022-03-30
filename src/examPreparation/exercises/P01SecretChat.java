@@ -6,42 +6,28 @@ public class P01SecretChat {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        StringBuilder input = new StringBuilder(scanner.nextLine());
-        String command = scanner.nextLine();
+        StringBuilder text = new StringBuilder(scanner.nextLine());
+        String input;
 
-        while (!command.equals("Reveal")) {
-
-            String[] commandAttribute = command.split(":\\|:");
-            switch (commandAttribute[0]) {
+        while (!"Reveal".equals(input = scanner.nextLine())) {
+            String[] command = input.split(":\\|:");
+            switch (command[0]) {
                 case "InsertSpace":
-                    int index = Integer.parseInt(commandAttribute[1]);
-                    input.insert(index, " ");
+                    System.out.println(text.insert(Integer.parseInt(command[1]), " "));
                     break;
                 case "Reverse":
-                    StringBuilder reverseString = new StringBuilder(commandAttribute[1]);
-                    index = input.indexOf(String.valueOf(reverseString));
-                    if (index == -1) {
-                        System.out.println("error");
-                        continue;
+                    if (text.toString().contains(command[1])) {
+                        System.out.println(text.delete(text.indexOf(command[1]), text.indexOf(command[1]) + command[1].length())
+                                .append(new StringBuilder(command[1]).reverse()));
                     } else {
-                        input.replace(index, index + reverseString.length(), "");
-                        input.append(reverseString.reverse());
+                        System.out.println("error");
                     }
                     break;
                 case "ChangeAll":
-                    String substring = commandAttribute[1];
-                    String replacement = commandAttribute[2];
-                    index = input.indexOf(substring);
-                    while (index != -1) {
-                        input.replace(index, index + substring.length(), replacement);
-                        index = input.indexOf(substring);
-                    }
+                    System.out.println(text = new StringBuilder(text.toString().replaceAll(command[1], command[2])));
                     break;
             }
-            System.out.println(input);
-
-            command = scanner.nextLine();
         }
-        System.out.println("You have a new text message: " + input);
+        System.out.println("You have a new text message: " + text);
     }
 }
