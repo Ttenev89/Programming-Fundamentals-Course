@@ -31,12 +31,12 @@ public class P02MirrorWords {
         if (count == 0) {
             System.out.println("No word pairs found!");
         } else {
-            System.out.println(count + "word pairs found!");
+            System.out.println(count + " word pairs found!");
         }
         if (mirror.size() == 0) {
             System.out.println("No mirror words!");
         } else {
-            System.out.println("The mirror words are:");
+            System.out.println("The mirror words are: ");
             System.out.println(String.join(", ", mirror));
         }
     }
