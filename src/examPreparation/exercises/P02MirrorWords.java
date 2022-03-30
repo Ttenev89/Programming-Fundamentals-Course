@@ -24,7 +24,7 @@ public class P02MirrorWords {
             StringBuilder firstWord = new StringBuilder(mirrorWord.group("firstWord"));
             StringBuilder secondWord = new StringBuilder(mirrorWord.group("secondWord"));
             if (firstWord.reverse().compareTo(secondWord) == 0) {
-                firstWord.reverse().append("<=>").append(secondWord);
+                firstWord.reverse().append(" <=> ").append(secondWord);
                 mirror.add(firstWord.toString());
             }
         }
